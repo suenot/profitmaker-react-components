@@ -1,38 +1,52 @@
 import * as React from "react"
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
+  extendTheme,
+  Container
 } from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import { PaymentUi } from "./components/PaymentUi"
+import { UnitUi } from "./components/UnitUi"
+import { WalletUi } from "./components/WalletUi"
+import { SchemaSandbox } from "./components/SchemaSandbox"
+import { UnitPublicUi } from "./components/UnitPublicUi"
+import { UnitEditUi } from "./components/UnitEditUi"
+import { WalletListUi } from "./components/WalletListUi"
+import { UnitListUi } from "./components/UnitListUi"
+import { PortfolioListUi } from "./components/PortfolioListUi"
+import { Switch } from "./SwitchMode"
+import theme from "./theme"
+
+// const theme = extendTheme({
+//   config: {
+//     initialColorMode: 'dark',
+//     useSystemColorMode: false,
+//   },
+// })
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
+    <Container>
+      <br />
+      <PaymentUi />
+      {/* <br /> */}
+      {/* <UnitUi /> */}
+      <br />
+      <UnitPublicUi />
+      <br />
+      <UnitEditUi />
+      <br />
+      {/* <WalletUi /> */}
+      {/* <br /> */}
+      {/* <SchemaSandbox /> */}
+      {/* <br /> */}
+      <WalletListUi />
+      <br />
+      <Switch />
+      <br />
+      <UnitListUi />
+      <br />
+      <PortfolioListUi />
+      <br />
+    </Container>
   </ChakraProvider>
 )
