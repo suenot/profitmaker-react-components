@@ -53,40 +53,6 @@ export const WalletListUi = () => {
     },
   ];
 
-  const units = [
-    {
-      id: 7005,
-      name: "US Dollar",
-      ticker: "USD",
-      avatar: "",
-    },
-    {
-      id: 7003,
-      name: "Dogecoin",
-      ticker: "DOGE",
-      avatar: "",
-    },
-  ];
-
-  const portfolios = [
-    {
-      id: 30829,
-      name: "Кадетский фонд",
-      avatar: "",
-    },
-    {
-      id: 41080,
-      name: "Группа захвата",
-      avatar: "",
-    },
-    {
-      id: 41000,
-      name: "Бюджет Deep.memo",
-      avatar: "",
-    },
-  ]
-
-
   return (
     <Box
       maxW="xl"
@@ -102,7 +68,7 @@ export const WalletListUi = () => {
       <Box p={4}>
         <Input w={"100%"} placeholder="Search" />
       </Box>
-      <TableContainer>
+      <TableContainer sx={{maxHeight: '320px', overflowY: 'auto'}}>
         <Table variant="simple">
           <Thead>
             <Tr>

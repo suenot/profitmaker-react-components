@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useState, useEffect } from 'react';
 import Identicon from "./Identicon";
-import { MdBuild, MdArrowBack, MdRemoveCircle } from "react-icons/md";
+import { MdBuild, MdArrowBack, MdRemoveCircle, MdEdit, MdClose } from "react-icons/md";
 
 import {
   Box,
@@ -57,10 +57,20 @@ export const UnitEditUi = () => {
       justify="center"
       mb={4}
     >
-      {unitSrc ? (<Avatar size='2xl' name='' src={unitSrc} mb='1' />) : (<Identicon linkId={unitId} size={128} />)}
+      <Box position='relative'>
+        {unitSrc ? (<Avatar size='2xl' name='' src={unitSrc} mb='1' />) : (<Identicon linkId={unitId} size={128} />)}
+        <Button colorScheme='white' size='xs' sx={{position: 'absolute', right: '64px', top: '52px'}} variant='outline'>
+          <MdEdit />
+        </Button>
+        <Button colorScheme='white' size='xs' sx={{position: 'absolute', right: '28px', top: '52px'}} variant='outline'>
+          <MdClose />
+        </Button>
+      </Box>
     </Flex>
+    {/* <Avatar size='128' name='' src={unitSrc} mb='1' /> */}
 
-    <Input w={'100%'} mb={4} placeholder="Insert Avatar" />
+
+    {/* <Input w={'100%'} mb={4} placeholder="Insert Avatar" /> */}
     <Input w={'100%'} mb={4} placeholder="Insert Ticker" />
 
     <Divider mb={6} mt={3} />
