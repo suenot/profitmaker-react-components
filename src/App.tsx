@@ -31,9 +31,7 @@ export const App = () => (
       {/* <br /> */}
       {/* <UnitUi /> */}
       <br />
-      <UnitPublicUi />
-      <br />
-      <UnitEditUi />
+      <UnitUi />
       <br />
       {/* <WalletUi /> */}
       {/* <br /> */}

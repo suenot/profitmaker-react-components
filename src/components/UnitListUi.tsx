@@ -48,7 +48,7 @@ export const UnitListUi = () => {
       bg={bg}
     >
       <Box p={4}>
-        <Input w={"100%"} placeholder="Search" />
+        <Input w={"100%"} placeholder="Search" variant='filled' />
       </Box>
       <TableContainer sx={{maxHeight: '320px', overflowY: 'auto'}}>
         <Table variant="simple">

@@ -5,10 +5,10 @@ import styled from "@emotion/styled";
 const StyledIdenticon = styled.div<{ size: number }>`
   height: ${(props) => props.size}px;
   width: ${(props) => props.size}px;
-  border-radius: 100% !important;
+  border-radius: 50% !important;
   background-color: black;
   &>div {
-    border-radius: 100% !important;
+    border-radius: 50% !important;
   }
 `;
 
