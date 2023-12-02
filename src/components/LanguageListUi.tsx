@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Suspense } from 'react';
+import { useState, useEffect, FunctionComponent } from 'react';
 import Identicon from "./Identicon";
 import {
   Box,
@@ -15,6 +17,40 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { formatNumber } from "../imports/formatNumber";
+import i18next from 'i18next'
+import ISO6391 from 'iso-639-1'
+
+import { languageToCountry } from '../languageToCountry';
+
+function Flag({ languageCode }: { languageCode: string }) {
+  const countryCode = languageToCountry[languageCode];
+
+  if (!countryCode) {
+    console.error(`Country code is undefined for language code: ${languageCode}`);
+    return null;
+  }
+
+  return <img src={`flag-icons/flags/1x1/${countryCode}.svg`} alt={`${countryCode} flag`} />;
+}
+// const allLanguages: string[] = i18next.services.languageUtils.toResolveHierarchy('en-US', i18next.languages);
+// const allLanguages: any = i18next.languages;
+// const allLanguages = ISO6391.getAllCodes();
+// Define a mapping from language codes to avatar URLs
+const languageAvatars: any = {
+  en: 'url-to-english-avatar',
+  es: 'url-to-spanish-avatar',
+  // Add more languages here...
+};
+
+const allLanguages = ISO6391.getAllCodes().map(code => ({
+  code,
+  name: ISO6391.getName(code),
+  avatar: languageAvatars[code] || 'default-avatar-url', // Use a default avatar if one is not defined for this language
+}));
+
+console.log('All Languages:', allLanguages);
+
+// console.log('All Languages:', allLanguages);
 
 export const LanguageListUi = () => {
   const bg = useColorModeValue("#fff", "#181818");
@@ -76,16 +112,19 @@ export const LanguageListUi = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((item) => (
-              <Tr key={item.symbold}>
-                <Td>{item.symbold}</Td>
-                <Td>
-                  <Flex alignItems="center">
-                    <Box>{item.originalName}</Box>
-                  </Flex>
-                </Td>
-              </Tr>
-            ))}
+            {allLanguages.map((item) => {
+              return (
+                <Tr key={item.code}>
+                  <Td>{item.code}</Td>
+                  <Td>
+                    <Flex alignItems="center">
+                      <Flag languageCode={item.code} /> {/* Render the flag if one is defined for this language */}
+                      <Box>{item.name}</Box>
+                    </Flex>
+                  </Td>
+                </Tr>
+              );
+            })}
           </Tbody>
         </Table>
       </TableContainer>
