@@ -14,69 +14,21 @@ import {
   Avatar,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { formatNumber } from "../imports/formatNumber";
+import { useTranslation } from 'react-i18next'
 
-export const PortfolioListUi = () => {
+export const PortfolioListUi = ({
+  search,
+  setSearch,
+  data,
+  setData,
+}: {
+  search: string;
+  setSearch: (search: string) => void;
+  data: any[];
+  setData: (data: any[]) => void;
+}) => {
   const bg = useColorModeValue("#fff", "#181818");
-
-  const data = [
-    {
-      id: 30829,
-      name: "Кадетский фонд",
-      avatar: "",
-    },
-    {
-      id: 41080,
-      name: "Группа захвата",
-      avatar: "",
-    },
-    {
-      id: 41000,
-      name: "Бюджет Deep.memo",
-      avatar: "",
-    },
-    {
-      id: 41001,
-      name: "Бюджет Deep.game",
-      avatar: "",
-    },
-    {
-      id: 41002,
-      name: "Бюджет Deep.social",
-      avatar: "",
-    },
-    {
-      id: 41003,
-      name: "Бюджет Deep.fund",
-      avatar: "",
-    },
-    {
-      id: 41004,
-      name: "Бюджет Deep.art",
-      avatar: "",
-    },
-    {
-      id: 41005,
-      name: "Бюджет Deep.market",
-      avatar: "",
-    },
-    {
-      id: 41006,
-      name: "Бюджет Deep.cafe",
-      avatar: "",
-    },
-    {
-      id: 41007,
-      name: "Бюджет Deep.land",
-      avatar: "",
-    },
-    {
-      id: 41008,
-      name: "Бюджет Deep.network",
-      avatar: "",
-    },
-  ]
-
+  const { t, i18n } = useTranslation()
 
   return (
     <Box
@@ -91,14 +43,14 @@ export const PortfolioListUi = () => {
       bg={bg}
     >
       <Box p={4}>
-        <Input w={"100%"} placeholder="Search" />
+      <Input w={"100%"} placeholder={t('Search')} value={search} onChange={(e) => {setSearch(e.target.value)}}/>
       </Box>
       <TableContainer sx={{maxHeight: '320px', overflowY: 'auto'}}>
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>Id</Th>
-              <Th>Name</Th>
+              <Th>{t('Id')}</Th>
+              <Th>{t('Name')}</Th>
             </Tr>
           </Thead>
           <Tbody>

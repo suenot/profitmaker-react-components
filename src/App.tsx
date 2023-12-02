@@ -10,7 +10,7 @@ import { UnitList } from "./components/UnitList"
 import { WalletUi } from "./components/WalletUi"
 import { SchemaSandbox } from "./components/SchemaSandbox"
 import { WalletList } from "./components/WalletList"
-import { PortfolioListUi } from "./components/PortfolioListUi"
+import { PortfolioList } from "./components/PortfolioList"
 import { LanguageListUi } from "./components/LanguageListUi"
 import { Switch } from "./SwitchMode"
 import theme from "./theme"
@@ -38,7 +38,7 @@ export const App = () => {
       <br />
       <WalletList />
       <br />
-      <PortfolioListUi />
+      <PortfolioList />
       <br />
       <LanguageListUi />
       <br />
