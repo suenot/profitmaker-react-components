@@ -21,8 +21,12 @@ import {
   Flex,
   useColorModeValue
 } from "@chakra-ui/react"
+import { useTranslation } from 'react-i18next'
+
 
 export const PaymentUi = () => {
+  const { t, i18n } = useTranslation()
+
   const fromSrc = "";
   const toSrc = "";
   const unitSrc = "";
@@ -39,11 +43,11 @@ export const PaymentUi = () => {
     <Box>
       <Box maxW='sm' minW='sm' w='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p='4' bg={bg}>
         <Text fontSize='xl' fontWeight='bold' mb={4}>
-          Transaction #1234123488
+          {t('Transaction')} #1234123488
         </Text>
         <Flex mb={3} alignItems='center'>
           <Flex alignItems='center'>
-            <Text fontWeight='semibold' mr={1}>From:</Text>
+            <Text fontWeight='semibold' mr={1}>{t('From')}:</Text>
             <Text>#</Text>
             <Editable placeholder="" value={"10284"} isDisabled={false} mr={1}>
               <EditablePreview w={'100%'} />
@@ -55,7 +59,7 @@ export const PaymentUi = () => {
         </Flex>
         <Flex mb={3} alignItems='center'>
           <Flex alignItems='center'>
-            <Text fontWeight='semibold' mr={1}>To:</Text>
+            <Text fontWeight='semibold' mr={1}>{t('To')}:</Text>
             <Text>#</Text>
             <Editable placeholder="" value={"11341"} isDisabled={false} mr={1}>
               <EditablePreview w={'100%'} />
@@ -67,7 +71,7 @@ export const PaymentUi = () => {
         </Flex>
         <Flex mb={3} alignItems='center'>
           <Flex alignItems='center'>
-            <Text fontWeight='semibold' mr={1}>Amount:</Text>
+            <Text fontWeight='semibold' mr={1}>{t('Amount')}:</Text>
             <Editable placeholder="" value={"100"} isDisabled={false} mr={1}>
               <EditablePreview w={'100%'} />
               <EditableInput />
@@ -77,7 +81,7 @@ export const PaymentUi = () => {
           { unitSrc ? (<Avatar sx={{width: '24px', height: '24px'}} ml={1} name='' src={unitSrc} mb='1'/>) : (<Box ml={1}><Identicon linkId={unitId} size={24} /></Box>)}
         </Flex>
         <Flex mb={3} alignItems='center' w={'100%'}>
-          <Text fontWeight='semibold' mr={1}>Description:</Text>
+          <Text fontWeight='semibold' mr={1}>{t('Description')}:</Text>
           <Editable placeholder="" value={"-"} isDisabled={false} mr={1} w={'100%'}>
             <EditablePreview w={'100%'} />
             <EditableInput />
@@ -85,7 +89,7 @@ export const PaymentUi = () => {
         </Flex>
 
         <Button colorScheme='blue' display='block' w='100%' size='md' variant='outline' mr={4} onClick={async () => {}}>
-          Send
+          {t('Send')}
         </Button>
         {/* <Badge ml='1' fontSize='1.5rem' colorScheme='orange' variant='outline'>
           Processing
