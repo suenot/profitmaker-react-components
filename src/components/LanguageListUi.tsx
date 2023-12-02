@@ -51,21 +51,11 @@ export const LanguageListUi = ({
   const bg = useColorModeValue("#fff", "#181818");
   const { t, i18n } = useTranslation()
 
-  // TODO: use data from parent component
-  // i send data prop as empty array from parent component
-  // console.log('data', data, data.length);
-  // if (data.length == 0) {
-  //   setData(allLanguages);
-  // }
-  // and then use data instead of allLanguages below in component
-  // but it doesn't work, because data is not updated, list is empty
-
-  // also doesn't work
-  // useEffect(() => {
-  //   if (data.length === 0) {
-  //     setData(allLanguages);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (data.length === 0) {
+      setData(allLanguages);
+    }
+  }, [data, allLanguages]);
 
   return (
     <Box
