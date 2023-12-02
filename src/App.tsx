@@ -11,7 +11,7 @@ import { WalletUi } from "./components/WalletUi"
 import { SchemaSandbox } from "./components/SchemaSandbox"
 import { WalletList } from "./components/WalletList"
 import { PortfolioList } from "./components/PortfolioList"
-import { LanguageListUi } from "./components/LanguageListUi"
+import { LanguageList } from "./components/LanguageList"
 import { Switch } from "./SwitchMode"
 import theme from "./theme"
 // import { useTranslation } from 'react-i18next'
@@ -40,7 +40,7 @@ export const App = () => {
       <br />
       <PortfolioList />
       <br />
-      <LanguageListUi />
+      <LanguageList />
       <br />
       <div>Old:</div>
       <WalletUi />

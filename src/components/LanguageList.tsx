@@ -1,15 +1,9 @@
 import * as React from "react"
 import { useState, useEffect } from 'react';
 
-import { PortfolioListUi } from "./PortfolioListUi";
+import { LanguageListUi } from "./LanguageListUi";
 
-const defaultData = [
-  {
-    id: 30829,
-    name: "Кадетский фонд",
-    avatar: "",
-  }
-];
+const defaultData: any[] = [];
 
 export const LanguageList = () => {
   const [search, setSearch] = useState<string>('');
@@ -28,6 +22,6 @@ export const LanguageList = () => {
     setData(filteredData);
   }, [search]);
   return (
-    <PortfolioListUi search={search} setSearch={setSearch} data={data} setData={()=>{}}/>
+    <LanguageListUi search={search} setSearch={setSearch} data={data} setData={()=>{}}/>
   )
 }

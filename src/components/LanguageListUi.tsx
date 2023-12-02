@@ -37,9 +37,24 @@ const allLanguages = ISO6391.getAllCodes().map(code => ({
   name: ISO6391.getName(code),
 }));
 
-export const LanguageListUi = () => {
+export const LanguageListUi = ({
+  search,
+  setSearch,
+  data,
+  setData,
+}: {
+  search: string;
+  setSearch: (search: string) => void;
+  data: any[];
+  setData: (data: any[]) => void;
+}) => {
   const bg = useColorModeValue("#fff", "#181818");
   const { t, i18n } = useTranslation()
+
+  // console.log('data', data, data.length);
+  // if (data.length == 0) {
+  //   setData(allLanguages);
+  // }
 
   return (
     <Box
