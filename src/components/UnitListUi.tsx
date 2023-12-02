@@ -15,6 +15,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { formatNumber } from "../imports/formatNumber";
+import { useTranslation } from 'react-i18next'
 
 export const UnitListUi = ({
   search,
@@ -28,6 +29,7 @@ export const UnitListUi = ({
   setData: (data: any[]) => void,
 }) => {
   const bg = useColorModeValue("#fff", "#181818");
+  const { t, i18n } = useTranslation()
 
   return (
     <Box
@@ -42,14 +44,14 @@ export const UnitListUi = ({
       bg={bg}
     >
       <Box p={4}>
-        <Input w={"100%"} placeholder="Search" value={search} onChange={(e) => {setSearch(e.target.value)}}/>
+        <Input w={"100%"} placeholder={t('Search')} value={search} onChange={(e) => {setSearch(e.target.value)}}/>
       </Box>
       <TableContainer sx={{maxHeight: '320px', overflowY: 'auto'}}>
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>Id</Th>
-              <Th>Name</Th>
+              <Th>{t('Id')}</Th>
+              <Th>{t('Name')}</Th>
             </Tr>
           </Thead>
           <Tbody>

@@ -13,45 +13,18 @@ import {
   Flex,
   Avatar,
   useColorModeValue,
-  Text,
 } from "@chakra-ui/react";
 import { formatNumber } from "../imports/formatNumber";
+import { useTranslation } from 'react-i18next'
 
-export const WalletListUi = () => {
+
+export const WalletListUi = ({search, setSearch, data}: {
+  search: string,
+  setSearch: (search: string) => void,
+  data: any[]
+}) => {
   const bg = useColorModeValue("#fff", "#181818");
-
-  const wallets = [
-    {
-      id: 20829,
-      name: "Кадетский фонд в DOGE",
-      avatar: "",
-      amount: 1234567.89,
-      unitId: 7003,
-      unitTicker: "DOGE",
-      unitAvatar: "",
-      unitName: "Dogecoin",
-    },
-    {
-      id: 30080,
-      name: "Группа захвата в DOGE",
-      avatar: "",
-      amount: 1234567.89,
-      unitId: 7003,
-      unitTicker: "DOGE",
-      unitAvatar: "",
-      unitName: "Dogecoin",
-    },
-    {
-      id: 31000,
-      name: "Бюджет Deep.memo в USD",
-      avatar: "",
-      amount: 1567.89,
-      unitId: 7005,
-      unitTicker: "USD",
-      unitAvatar: "",
-      unitName: "US Dollar",
-    },
-  ];
+  const { t, i18n } = useTranslation()
 
   return (
     <Box
@@ -66,18 +39,18 @@ export const WalletListUi = () => {
       bg={bg}
     >
       <Box p={4}>
-        <Input w={"100%"} placeholder="Search" />
+        <Input w={"100%"} placeholder={t('Search')} value={search} onChange={(e) => {setSearch(e.target.value)}}/>
       </Box>
       <TableContainer sx={{maxHeight: '320px', overflowY: 'auto'}}>
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>Id</Th>
-              <Th>Wallet Name</Th>
+              <Th>{t('Id')}</Th>
+              <Th>{t('Name')}</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {wallets.map((wallet) => (
+            {data.map((wallet) => (
               <Tr key={wallet.id}>
                 <Td>#{wallet.id}</Td>
                 <Td>
@@ -104,24 +77,6 @@ export const WalletListUi = () => {
                       </Box>
                     </Box>
                   </Flex>
-                  {/* <Flex alignItems="center" justifyContent="left">
-                    <Box>
-                      {formatNumber({numberToFormat: wallet.amount, minimumFractionDigits: 2, maximumFractionDigits: 2})} {wallet.unitTicker}
-                    </Box>
-                    {wallet.unitAvatar ? (
-                      <Avatar
-                        sx={{ width: "24px", height: "24px" }}
-                        ml={1}
-                        name=""
-                        src={wallet.unitAvatar}
-                        mb="1"
-                      />
-                    ) : (
-                      <Box ml={1}>
-                        <Identicon linkId={wallet.unitId} size={24} />
-                      </Box>
-                    )}
-                  </Flex> */}
                 </Td>
               </Tr>
             ))}

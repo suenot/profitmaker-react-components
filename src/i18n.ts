@@ -61,7 +61,7 @@ const resources = {
       "Remove language": "Удалить язык",
       "Insert avatar": "Адрес к аватарке",
       "Insert ticker": "Напишите тикер",
-      "Insert name": "Напшите имя",
+      "Insert name": "Напишите имя",
       "Insert description": "Придумайте описание",
       "Search": "Поиск",
       "Avatar": "Аватарка",
