@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Identicon from "./Identicon";
 import { MdBuild, MdArrowBack, MdRemoveCircle, MdEdit, MdClose } from "react-icons/md";
 import { UnitOptions, Language } from "./types";
+import { useTranslation } from 'react-i18next'
 
 import {
   Box,
@@ -42,7 +43,7 @@ export const UnitEditUi = ({
   created?: boolean,
   onClickCreateButton?: () => void
 }) => {
-
+  const { t, i18n } = useTranslation()
   const bg = useColorModeValue('#fff', '#181818');
 
   const [_options, _setOptions] = useState<UnitOptions>(options);
@@ -61,14 +62,14 @@ export const UnitEditUi = ({
 
   return (
     <Box maxW='sm' minW='sm' w='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p='4' sx={{position: 'relative'}} bg={bg}>
-    { created && <Button colorScheme='teal' variant='outline' sx={{position: 'absolute', top: 4, left: 4}} onClick={onClickBackButton}>
+    { created && <Button colorScheme='blue' variant='outline' sx={{position: 'absolute', top: 4, left: 4}} onClick={onClickBackButton}>
       <MdArrowBack />
     </Button> }
-    { created ? <Button colorScheme='teal' variant='outline' sx={{position: 'absolute', top: 4, right: 4}} onClick={onClickSaveButton}>
-      Save
+    { created ? <Button colorScheme='blue' variant='outline' sx={{position: 'absolute', top: 4, right: 4}} onClick={onClickSaveButton}>
+      {t('Save')}
     </Button> :
-    <Button colorScheme='teal' variant='outline' sx={{position: 'absolute', top: 4, right: 4}} onClick={() => {onClickCreateButton && onClickCreateButton()}}>
-        Create
+    <Button colorScheme='blue' variant='outline' sx={{position: 'absolute', top: 4, right: 4}} onClick={() => {onClickCreateButton && onClickCreateButton()}}>
+        {t('Create')}
       </Button> }
     <Flex
       align="center"
@@ -80,8 +81,8 @@ export const UnitEditUi = ({
       </Box>
     </Flex>
 
-    <Input w={'100%'} mb={4} placeholder="Insert Avatar" value={_options.unitSrc} />
-    <Input w={'100%'} mb={4} placeholder="Insert Ticker" value={_options.unitTicker}/>
+    <Input w={'100%'} mb={4} placeholder={t('Insert avatar')} value={_options.unitSrc} />
+    <Input w={'100%'} mb={4} placeholder={t('Insert ticker')} value={_options.unitTicker}/>
 
     <Divider mb={6} mt={3} />
     <Tabs variant='soft-rounded' colorScheme='gray' sx={{
@@ -101,7 +102,7 @@ export const UnitEditUi = ({
           )}
           {/* if more than 2 that select */}
           { _options.languages && _options.languages.length > 2 &&  (
-            <Select placeholder='Languages' w='10rem'>
+            <Select placeholder={t('Languages')} w='10rem'>
               { _options.languages && _options.languages.map((item: Language) => (
                 <option value={item.symbold}>{item.originalName}</option>
               ))}
@@ -109,7 +110,7 @@ export const UnitEditUi = ({
           )}
 
           {/* if more than 2 that select */}
-          <Select placeholder='Add languge' w='10rem' value={selectedLanguage} onChange={(e) => {
+          <Select placeholder={t('Add language')} w='11rem' value={selectedLanguage} onChange={(e) => {
             addLanguage(e.target.value);
             setSelectedLanguage('');
           }}>
@@ -118,10 +119,10 @@ export const UnitEditUi = ({
             ))}
           </Select>
         </HStack>
-        <Input w={'100%'} placeholder="Insert Name" value={_options.unitName} onChange={()=>{}} />
-        <Input w={'100%'} placeholder="Insert Description" value={_options.unitDescription} onChange={()=>{}} />
+        <Input w={'100%'} placeholder={t('Insert name')} value={_options.unitName} onChange={()=>{}} />
+        <Input w={'100%'} placeholder={t('Insert description')} value={_options.unitDescription} onChange={()=>{}} />
         <Button colorScheme='pink' variant='outline' sx={{width: '100%'}}>
-          Remove language
+          {t('Remove language')}
         </Button>
       </Tabs>
     </Box>

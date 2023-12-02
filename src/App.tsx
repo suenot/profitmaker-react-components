@@ -16,7 +16,7 @@ import { PortfolioListUi } from "./components/PortfolioListUi"
 import { LanguageListUi } from "./components/LanguageListUi"
 import { Switch } from "./SwitchMode"
 import theme from "./theme"
-import { useTranslation } from 'react-i18next'
+// import { useTranslation } from 'react-i18next'
 
 // const theme = extendTheme({
 //   config: {
@@ -26,11 +26,11 @@ import { useTranslation } from 'react-i18next'
 // })
 
 export const App = () => {
-  const { t, i18n } = useTranslation()
+  // const { t, i18n } = useTranslation()
   // i18n.changeLanguage('ru');
   return <ChakraProvider theme={theme}>
     <Container>
-      <h1>{t('Welcome to React')}</h1>
+      {/* <h1>{t('Welcome to React')}</h1> */}
       <br />
       <PaymentUi />
       {/* <br /> */}
