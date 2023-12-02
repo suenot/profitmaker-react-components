@@ -16,23 +16,41 @@ import {
 } from "@chakra-ui/react";
 import { formatNumber } from "../imports/formatNumber";
 
-export const UnitListUi = () => {
+export const LanguageListUi = () => {
   const bg = useColorModeValue("#fff", "#181818");
 
   const data = [
     {
-      id: 7005,
-      name: "US Dollar",
-      ticker: "USD",
-      avatar: "",
+      symbold: 'ru',
+      originalName: 'Русский',
+      englishName: 'Russian',
     },
     {
-      id: 7003,
-      name: "Dogecoin",
-      ticker: "DOGE",
-      avatar: "",
+      symbold: 'en',
+      originalName: 'English',
+      englishName: 'English',
     },
-  ];
+    {
+      symbold: 'uz',
+      originalName: 'O\'zbekcha',
+      englishName: 'Uzbek',
+    },
+    {
+      symbold: 'uk',
+      originalName: 'Українська',
+      englishName: 'Ukrainian',
+    },
+    {
+      symbold: 'by',
+      originalName: 'Беларуская',
+      englishName: 'Belarusian',
+    },
+    {
+      symbold: 'kk',
+      originalName: 'Қазақша',
+      englishName: 'Kazakh',
+    },
+  ]
 
   return (
     <Box
@@ -59,26 +77,11 @@ export const UnitListUi = () => {
           </Thead>
           <Tbody>
             {data.map((item) => (
-              <Tr key={item.id}>
-                <Td>#{item.id}</Td>
+              <Tr key={item.symbold}>
+                <Td>{item.symbold}</Td>
                 <Td>
                   <Flex alignItems="center">
-                    <Box mr={2}>
-                      {item.avatar ? (
-                        <Avatar
-                          sx={{ width: "24px", height: "24px" }}
-                          ml={1}
-                          name=""
-                          src={item.avatar}
-                          mb="1"
-                        />
-                      ) : (
-                        <Box ml={1}>
-                          <Identicon linkId={item.id} size={24} />
-                        </Box>
-                      )}
-                    </Box>
-                    <Box>{item.name}</Box>
+                    <Box>{item.originalName}</Box>
                   </Flex>
                 </Td>
               </Tr>

@@ -13,6 +13,7 @@ import { UnitEditUi } from "./components/UnitEditUi"
 import { WalletListUi } from "./components/WalletListUi"
 import { UnitListUi } from "./components/UnitListUi"
 import { PortfolioListUi } from "./components/PortfolioListUi"
+import { LanguageListUi } from "./components/LanguageListUi"
 import { Switch } from "./SwitchMode"
 import theme from "./theme"
 
@@ -44,6 +45,8 @@ export const App = () => (
       <UnitListUi />
       <br />
       <PortfolioListUi />
+      <br />
+      <LanguageListUi />
       <br />
     </Container>
   </ChakraProvider>

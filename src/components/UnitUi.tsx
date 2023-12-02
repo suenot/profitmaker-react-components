@@ -5,6 +5,17 @@ import { UnitPublicUi } from "./UnitPublicUi";
 import { UnitEditUi } from "./UnitEditUi";
 import { UnitOptions, Language } from "./types";
 
+const unitId = 7003;
+
+const emptyOptions: UnitOptions = {
+  unitName: "",
+  unitTicker: "",
+  unitDescription: "",
+  unitSrc: "",
+  unitId,
+  languages: [],
+}
+
 const defaultOptions: UnitOptions = {
   unitName: "CatCoin",
   unitTicker: "CAT",
@@ -13,34 +24,9 @@ const defaultOptions: UnitOptions = {
   unitId: 7003,
   languages: [
     {
-      symbold: 'ru',
-      originalName: 'Русский',
-      englishName: 'Russian',
-    },
-    {
       symbold: 'en',
       originalName: 'English',
       englishName: 'English',
-    },
-    {
-      symbold: 'uz',
-      originalName: 'O\'zbekcha',
-      englishName: 'Uzbek',
-    },
-    {
-      symbold: 'uk',
-      originalName: 'Українська',
-      englishName: 'Ukrainian',
-    },
-    {
-      symbold: 'by',
-      originalName: 'Беларуская',
-      englishName: 'Belarusian',
-    },
-    {
-      symbold: 'kk',
-      originalName: 'Қазақша',
-      englishName: 'Kazakh',
     },
   ],
 }
@@ -79,25 +65,39 @@ const defaultAvailableLanguages: Language[] = [
 ]
 
 export const UnitUi = () => {
-  const [created, setCreated] = useState(true); // подписка на created
+  const [created, setCreated] = useState(false); // подписка на created
   const [edit, setEdit] = useState(false); // подписка на edit
 
-  const [options, setOptions] = useState<UnitOptions>(defaultOptions);
+  const [options, setOptions] = useState<UnitOptions>(emptyOptions);
 
   const availableLanguages: Language[] = defaultAvailableLanguages;
 
   return (
     <div>
-      { created && !edit ?
-        <UnitPublicUi onClickEditButton={() => setEdit(true)} options={options}/> :
-        <UnitEditUi
-          onClickBackButton={() => setEdit(false)}
-          onClickSaveButton={() => setEdit(false)}
-          options={options}
-          setOptions={setOptions}
-          availableLanguages={availableLanguages}
-        />
-      }
+      { created && !edit && <UnitPublicUi
+        onClickEditButton={() => setEdit(true)}
+        options={options}
+      /> }
+      { !created && <UnitEditUi
+        onClickBackButton={() => setCreated(true)}
+        onClickSaveButton={() => setCreated(true)}
+        options={options}
+        setOptions={setOptions}
+        availableLanguages={availableLanguages}
+        onClickCreateButton={() => {
+          setOptions(defaultOptions)
+          setCreated(true)
+        }}
+        created={created}
+      /> }
+      { edit && <UnitEditUi
+        onClickBackButton={() => setEdit(false)}
+        onClickSaveButton={() => setEdit(false)}
+        options={options}
+        setOptions={setOptions}
+        availableLanguages={availableLanguages}
+        created={created}
+      /> }
     </div>
   )
 }

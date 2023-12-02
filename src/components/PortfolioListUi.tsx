@@ -17,7 +17,6 @@ import {
 import { formatNumber } from "../imports/formatNumber";
 
 export const PortfolioListUi = () => {
-  const unitId = 7005;
   const bg = useColorModeValue("#fff", "#181818");
 
   const data = [
