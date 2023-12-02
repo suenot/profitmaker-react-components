@@ -5,13 +5,11 @@ import {
   Container
 } from "@chakra-ui/react"
 import { PaymentUi } from "./components/PaymentUi"
-import { UnitUi } from "./components/UnitUi"
+import { Unit } from "./components/Unit"
+import { UnitList } from "./components/UnitList"
 import { WalletUi } from "./components/WalletUi"
 import { SchemaSandbox } from "./components/SchemaSandbox"
-import { UnitPublicUi } from "./components/UnitPublicUi"
-import { UnitEditUi } from "./components/UnitEditUi"
 import { WalletListUi } from "./components/WalletListUi"
-import { UnitListUi } from "./components/UnitListUi"
 import { PortfolioListUi } from "./components/PortfolioListUi"
 import { LanguageListUi } from "./components/LanguageListUi"
 import { Switch } from "./SwitchMode"
@@ -33,25 +31,23 @@ export const App = () => {
       {/* <h1>{t('Welcome to React')}</h1> */}
       <br />
       <PaymentUi />
-      {/* <br /> */}
-      {/* <UnitUi /> */}
       <br />
-      <UnitUi />
+      <Unit />
       <br />
-      {/* <WalletUi /> */}
-      {/* <br /> */}
-      {/* <SchemaSandbox /> */}
-      {/* <br /> */}
+      <UnitList />
+      <br />
       <WalletListUi />
-      <br />
-      <Switch />
-      <br />
-      <UnitListUi />
       <br />
       <PortfolioListUi />
       <br />
       <LanguageListUi />
       <br />
+      <div>Old:</div>
+      <WalletUi />
+      <br />
+      <SchemaSandbox />
+      <br />
+      <Switch />
     </Container>
   </ChakraProvider>
 }

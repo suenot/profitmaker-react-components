@@ -16,23 +16,18 @@ import {
 } from "@chakra-ui/react";
 import { formatNumber } from "../imports/formatNumber";
 
-export const UnitListUi = () => {
+export const UnitListUi = ({
+  search,
+  setSearch,
+  data,
+  setData
+}: {
+  search: string,
+  setSearch: (search: string) => void,
+  data: any[]
+  setData: (data: any[]) => void,
+}) => {
   const bg = useColorModeValue("#fff", "#181818");
-
-  const data = [
-    {
-      id: 7005,
-      name: "US Dollar",
-      ticker: "USD",
-      avatar: "",
-    },
-    {
-      id: 7003,
-      name: "Dogecoin",
-      ticker: "DOGE",
-      avatar: "",
-    },
-  ];
 
   return (
     <Box
@@ -47,7 +42,7 @@ export const UnitListUi = () => {
       bg={bg}
     >
       <Box p={4}>
-        <Input w={"100%"} placeholder="Search" />
+        <Input w={"100%"} placeholder="Search" value={search} onChange={(e) => {setSearch(e.target.value)}}/>
       </Box>
       <TableContainer sx={{maxHeight: '320px', overflowY: 'auto'}}>
         <Table variant="simple">
