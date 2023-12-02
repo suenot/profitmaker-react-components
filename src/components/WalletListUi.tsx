@@ -13,6 +13,7 @@ import {
   Flex,
   Avatar,
   useColorModeValue,
+  Text,
 } from "@chakra-ui/react";
 import { formatNumber } from "../imports/formatNumber";
 
@@ -54,9 +55,9 @@ export const WalletListUi = () => {
 
   return (
     <Box
-      maxW="xl"
+      maxW="sm"
       minW="sm"
-      w="xl"
+      w="sm"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
@@ -73,7 +74,6 @@ export const WalletListUi = () => {
             <Tr>
               <Th>Id</Th>
               <Th>Wallet Name</Th>
-              <Th isNumeric>Amount</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -97,11 +97,14 @@ export const WalletListUi = () => {
                         </Box>
                       )}
                     </Box>
-                    <Box>{wallet.name}</Box>
+                    <Box>
+                      <Box>{wallet.name}</Box>
+                      <Box>
+                        {formatNumber({numberToFormat: wallet.amount, minimumFractionDigits: 2, maximumFractionDigits: 2})} {wallet.unitTicker}
+                      </Box>
+                    </Box>
                   </Flex>
-                </Td>
-                <Td>
-                  <Flex alignItems="center" justifyContent="end">
+                  {/* <Flex alignItems="center" justifyContent="left">
                     <Box>
                       {formatNumber({numberToFormat: wallet.amount, minimumFractionDigits: 2, maximumFractionDigits: 2})} {wallet.unitTicker}
                     </Box>
@@ -118,7 +121,7 @@ export const WalletListUi = () => {
                         <Identicon linkId={wallet.unitId} size={24} />
                       </Box>
                     )}
-                  </Flex>
+                  </Flex> */}
                 </Td>
               </Tr>
             ))}

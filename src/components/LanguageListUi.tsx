@@ -121,7 +121,9 @@ export const LanguageListUi = () => {
                   <Td>{item.code}</Td>
                   <Td>
                     <Flex alignItems="center">
-                      <Flag languageCode={item.code} /> {/* Render the flag if one is defined for this language */}
+                      <Box mr={2}>
+                        <Flag languageCode={item.code} />
+                      </Box>
                       <Box>{item.name}</Box>
                     </Flex>
                   </Td>
