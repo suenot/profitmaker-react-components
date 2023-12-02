@@ -19,18 +19,21 @@ import {
 import { formatNumber } from "../imports/formatNumber";
 import i18next from 'i18next'
 import ISO6391 from 'iso-639-1'
+import "/node_modules/flag-icons/css/flag-icons.min.css"
 
 import { languageToCountry } from '../languageToCountry';
 
 function Flag({ languageCode }: { languageCode: string }) {
+
   const countryCode = languageToCountry[languageCode];
 
   if (!countryCode) {
     console.error(`Country code is undefined for language code: ${languageCode}`);
     return null;
   }
-
-  return <img src={`flag-icons/flags/1x1/${countryCode}.svg`} alt={`${countryCode} flag`} />;
+  return <span className={`fi fi-${countryCode} fis`} style={{borderRadius: '100%', height: '24px', width: '24px'}}></span>
+  // return <div><span className="fi fi-gr"></span> <span className="fi fi-gr fis"></span></div>
+  // return <img src={`flag-icons/flags/1x1/${countryCode}.svg`} alt={`${countryCode} flag`} />;
 }
 // const allLanguages: string[] = i18next.services.languageUtils.toResolveHierarchy('en-US', i18next.languages);
 // const allLanguages: any = i18next.languages;
