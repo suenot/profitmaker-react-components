@@ -12,6 +12,7 @@ import { SchemaSandbox } from "./components/SchemaSandbox"
 import { WalletList } from "./components/WalletList"
 import { PortfolioList } from "./components/PortfolioList"
 import { LanguageList } from "./components/LanguageList"
+import { Echarts } from "./components/Echarts"
 import { Switch } from "./SwitchMode"
 import theme from "./theme"
 // import { useTranslation } from 'react-i18next'
@@ -47,6 +48,7 @@ export const App = () => {
       <br />
       <SchemaSandbox />
       <br />
+      <Echarts />
       <Switch />
     </Container>
   </ChakraProvider>
