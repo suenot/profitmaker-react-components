@@ -7,7 +7,8 @@ const defaultData: any[] = [];
 
 export const LanguageList = () => {
   const [search, setSearch] = useState<string>('');
-  const [data, setData] = useState<any[]>(defaultData);
+  const [defaultData, setDefaultData] = useState<any[]>([]);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     if (!search) {
@@ -22,6 +23,6 @@ export const LanguageList = () => {
     setData(filteredData);
   }, [search]);
   return (
-    <LanguageListUi search={search} setSearch={setSearch} data={data} setData={()=>{}}/>
+    <LanguageListUi search={search} setSearch={setSearch} data={data} setData={setData} setDefaultData={setDefaultData}/>
   )
 }
