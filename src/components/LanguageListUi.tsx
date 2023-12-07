@@ -42,11 +42,13 @@ export const LanguageListUi = ({
   setSearch,
   data,
   setData,
+  setDefaultData,
 }: {
   search: string;
   setSearch: (search: string) => void;
   data: any[];
   setData: (data: any[]) => void;
+  setDefaultData: (data: any[]) => void;
 }) => {
   const bg = useColorModeValue("#fff", "#181818");
   const { t, i18n } = useTranslation()
@@ -54,9 +56,10 @@ export const LanguageListUi = ({
   // TODO: use data from parent component
   // i send data prop as empty array from parent component
   // console.log('data', data, data.length);
-  // if (data.length == 0) {
-  //   setData(allLanguages);
-  // }
+  if (data.length == 0) {
+    setData(allLanguages);
+    setDefaultData(allLanguages);
+  }
   // and then use data instead of allLanguages below in component
   // but it doesn't work, because data is not updated, list is empty
 

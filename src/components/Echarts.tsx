@@ -1,0 +1,18 @@
+import * as React from "react"
+
+import {
+  Box,
+  useColorModeValue,
+} from "@chakra-ui/react"
+
+export const Echarts = ({src, id, size}: {src: string, id: number, size: number}) => {
+
+  const bg = useColorModeValue('#fff', '#181818');
+
+  return (
+    <Box>
+      <Box maxW='sm' minW='sm' w='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p='4' bg={bg}>
+      </Box>
+    </Box>
+  )
+}
