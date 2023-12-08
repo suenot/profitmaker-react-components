@@ -1,8 +1,4 @@
 import * as React from "react";
-import { Suspense } from 'react';
-import { useState, useEffect, FunctionComponent } from 'react';
-import Identicon from "./Identicon";
-import ISO6391 from 'iso-639-1';
 
 import {
   Box,
@@ -20,55 +16,26 @@ import {
 import "/node_modules/flag-icons/css/flag-icons.min.css"
 import { useTranslation } from 'react-i18next'
 
-import { languageToCountry } from '../languageToCountry';
-
-function Flag({ languageCode }: { languageCode: string}) {
-
-  const countryCode = languageToCountry[languageCode];
-
+function Flag({ countryCode }: { countryCode: string}) {
   if (!countryCode) {
     return <Box sx={{border: '1px solid grey', borderRadius: '100%', height: '24px', width: '24px'}}></Box>;
   }
   return <span className={`fi fi-${countryCode} fis`} style={{borderRadius: '100%', height: '24px', width: '24px'}}></span>
 }
 
-const allLanguages = ISO6391.getAllCodes().map(code => ({
-  code,
-  name: ISO6391.getName(code),
-}));
-
 export const LanguageListUi = ({
   search,
   setSearch,
   data,
   setData,
-  setDefaultData,
 }: {
   search: string;
   setSearch: (search: string) => void;
   data: any[];
   setData: (data: any[]) => void;
-  setDefaultData: (data: any[]) => void;
 }) => {
   const bg = useColorModeValue("#fff", "#181818");
   const { t, i18n } = useTranslation()
-
-  // TODO: use data from parent component
-  // i send data prop as empty array from parent component
-  // console.log('data', data, data.length);
-  if (data.length == 0) {
-    setData(allLanguages);
-    setDefaultData(allLanguages);
-  }
-  // and then use data instead of allLanguages below in component
-  // but it doesn't work, because data is not updated, list is empty
-
-  // also doesn't work
-  // useEffect(() => {
-  //   if (data.length === 0) {
-  //     setData(allLanguages);
-  //   }
-  // }, []);
 
   return (
     <Box
@@ -83,7 +50,7 @@ export const LanguageListUi = ({
       bg={bg}
     >
       <Box p={4}>
-        <Input w={"100%"} placeholder={t('Search')} />
+        <Input w={"100%"} placeholder={t('Search')} onChange={(e) => {setSearch(e.target.value)}} />
       </Box>
       <TableContainer sx={{maxHeight: '320px', overflowY: 'auto'}}>
         <Table variant="simple">
@@ -97,11 +64,11 @@ export const LanguageListUi = ({
             {data.map((item) => {
               return (
                 <Tr key={item.code}>
-                  <Td>{item.code}</Td>
+                  <Td>{item.countryCode}</Td>
                   <Td>
                     <Flex alignItems="center">
                       <Box mr={2}>
-                        <Flag languageCode={item.code} />
+                        <Flag countryCode={item.countryCode} />
                       </Box>
                       <Box>{item.name}</Box>
                     </Flex>
