@@ -12,9 +12,11 @@ import {
   Td,
   Flex,
   useColorModeValue,
+  Button,
 } from "@chakra-ui/react";
 import "/node_modules/flag-icons/css/flag-icons.min.css"
 import { useTranslation } from 'react-i18next'
+import { MdArrowBack } from "react-icons/md";
 
 function Flag({ countryCode }: { countryCode: string}) {
   if (!countryCode) {
@@ -28,11 +30,15 @@ export const LanguageListUi = ({
   setSearch,
   data,
   setData,
+  onSelect,
+  onClose
 }: {
   search: string;
   setSearch: (search: string) => void;
   data: any[];
   setData: (data: any[]) => void;
+  onSelect: (item: any) => void;
+  onClose?: () => void;
 }) => {
   const bg = useColorModeValue("#fff", "#181818");
   const { t, i18n } = useTranslation()
@@ -49,9 +55,10 @@ export const LanguageListUi = ({
       sx={{ position: "relative" }}
       bg={bg}
     >
-      <Box p={4}>
+      <Flex p={4}>
+        { onClose && <Button onClick={onClose} leftIcon={<MdArrowBack />} colorScheme='blue' variant='outline' mr={3} pr={2}></Button> }
         <Input w={"100%"} placeholder={t('Search')} onChange={(e) => {setSearch(e.target.value)}} />
-      </Box>
+      </Flex>
       <TableContainer sx={{maxHeight: '320px', overflowY: 'auto'}}>
         <Table variant="simple">
           <Thead>
@@ -63,7 +70,7 @@ export const LanguageListUi = ({
           <Tbody>
             {data.map((item) => {
               return (
-                <Tr key={item.code}>
+                <Tr key={item.code} onClick={() => {onSelect(item)}}>
                   <Td>{item.countryCode}</Td>
                   <Td>
                     <Flex alignItems="center">

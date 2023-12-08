@@ -32,6 +32,6 @@ export const LanguageList = () => {
     setData(filteredData);
   }, [search]);
   return (
-    <LanguageListUi search={search} setSearch={setSearch} data={data} setData={setData} />
+    <LanguageListUi search={search} setSearch={setSearch} data={data} setData={setData} onSelect={(item)=>{alert(JSON.stringify(item))}} onClose={()=>{alert('close')}} />
   )
 }
