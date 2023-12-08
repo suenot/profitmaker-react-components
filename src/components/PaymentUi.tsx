@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useRef } from 'react';
 import Identicon from "./Identicon";
 import {
   Box,
@@ -19,7 +19,13 @@ import {
   AvatarBadgeProps,
   Badge,
   Flex,
-  useColorModeValue
+  useColorModeValue,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
 } from "@chakra-ui/react"
 import { useTranslation } from 'react-i18next'
 
@@ -34,13 +40,22 @@ export const PaymentUi = () => {
   const toId = 7102;
   const unitId = 7103;
 
-
+  const wrapperRef = useRef(null);
   const bg = useColorModeValue('#fff', '#181818');
-  // const bg = useColorModeValue('#eeeeee', '#1e1e1e');
-  // const borderColor = useColorModeValue('#a3a3a3', '#4d4d4d');
-  // borderColor={borderColor} bg={bg}
+
   return (
-    <Box>
+    <Box sx={{position: 'relative'}} ref={wrapperRef}>
+      <Drawer placement="bottom" onClose={()=>{}} isOpen={false} portalProps={{containerRef: wrapperRef}}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
+          <DrawerBody>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
       <Box maxW='sm' minW='sm' w='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' p='4' bg={bg}>
         <Text fontSize='xl' fontWeight='bold' mb={4}>
           {t('Transaction')} #1234123488
