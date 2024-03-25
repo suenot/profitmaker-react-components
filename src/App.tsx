@@ -15,6 +15,7 @@ import { LanguageList } from "./components/LanguageList"
 import { Echarts } from "./components/Echarts"
 import { Switch } from "./SwitchMode"
 import Dashboard from "./components/Dashboard"
+import { Candles } from "./components/Candles/TradingView/Candles"
 import theme from "./theme"
 import {
   createBrowserRouter,
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+  },
+  {
+    path: "/candles",
+    element: <Candles />,
   },
 ]);
 
