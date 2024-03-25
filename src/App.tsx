@@ -16,6 +16,11 @@ import { Echarts } from "./components/Echarts"
 import { Switch } from "./SwitchMode"
 import Dashboard from "./components/Dashboard"
 import theme from "./theme"
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
 // import { useTranslation } from 'react-i18next'
 
 // const theme = extendTheme({
@@ -25,35 +30,49 @@ import theme from "./theme"
 //   },
 // })
 
+export const ComponentsList = () => {
+  return <Container>
+    <br />
+    <PaymentUi />
+    <br />
+    <Unit />
+    <br />
+    <UnitList />
+    <br />
+    <WalletList />
+    <br />
+    <PortfolioList />
+    <br />
+    <LanguageList />
+    <br />
+    <div>Old:</div>
+    <WalletUi />
+    <br />
+    <SchemaSandbox />
+    <br />
+    <Echarts />
+    <br />
+    <Dashboard />
+    <br />
+    <Switch />
+  </Container>
+}
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <ComponentsList />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+  },
+]);
+
 export const App = () => {
   // const { t, i18n } = useTranslation()
   // i18n.changeLanguage('ru');
   return <ChakraProvider theme={theme}>
-    <Container>
-      {/* <h1>{t('Welcome to React')}</h1> */}
-      <br />
-      <PaymentUi />
-      <br />
-      <Unit />
-      <br />
-      <UnitList />
-      <br />
-      <WalletList />
-      <br />
-      <PortfolioList />
-      <br />
-      <LanguageList />
-      <br />
-      <div>Old:</div>
-      <WalletUi />
-      <br />
-      <SchemaSandbox />
-      <br />
-      <Echarts />
-      <br />
-      <Dashboard />
-      <br />
-      <Switch />
-    </Container>
+    <RouterProvider router={router} />
   </ChakraProvider>
 }
