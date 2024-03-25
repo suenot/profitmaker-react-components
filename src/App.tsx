@@ -14,6 +14,7 @@ import { PortfolioList } from "./components/PortfolioList"
 import { LanguageList } from "./components/LanguageList"
 import { Echarts } from "./components/Echarts"
 import { Switch } from "./SwitchMode"
+import Dashboard from "./components/Dashboard"
 import theme from "./theme"
 // import { useTranslation } from 'react-i18next'
 
@@ -49,6 +50,9 @@ export const App = () => {
       <SchemaSandbox />
       <br />
       <Echarts />
+      <br />
+      <Dashboard />
+      <br />
       <Switch />
     </Container>
   </ChakraProvider>
