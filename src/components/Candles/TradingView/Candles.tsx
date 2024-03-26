@@ -1,8 +1,8 @@
-import { createChart, ColorType } from 'lightweight-charts';
+import { createChart, ColorType, UTCTimestamp } from 'lightweight-charts';
 import React, { useEffect, useRef } from 'react';
 
 interface Candlestick {
-  time: { year: number, month: number, day: number },
+  time: UTCTimestamp,
   open: number,
   high: number,
   low: number,
@@ -45,9 +45,20 @@ export const ChartComponent: React.FC<ChartProps> = props => {
         chart.applyOptions({ width: chartContainerRef.current!.clientWidth });
       };
 
+      // const chart = createChart(chartContainerRef.current, {
+      //   width: chartContainerRef.current.clientWidth,
+      //   height: 500,
+      // });
+      // chart.timeScale().fitContent();
       const chart = createChart(chartContainerRef.current, {
         width: chartContainerRef.current.clientWidth,
         height: 500,
+        timeScale: {
+          tickMarkFormatter: (time: number) => {
+            const date = new Date(time * 1000);
+            return date.toISOString().substr(11, 8); // format as HH:mm:ss
+          },
+        },
       });
       chart.timeScale().fitContent();
 
@@ -59,6 +70,8 @@ export const ChartComponent: React.FC<ChartProps> = props => {
         wickDownColor,
         wickUpColor,
       });
+
+      // modify data to seconds
       candleSeries.setData(data);
 
       window.addEventListener('resize', handleResize);
@@ -80,7 +93,9 @@ export const ChartComponent: React.FC<ChartProps> = props => {
 };
 
 const initialData: Candlestick[] = [
-  { time: { year: 2022, month: 1, day: 18 }, open: 10, high: 10.63, low: 9.49, close: 9.55, volume: 1000 }
+  { time: Math.floor(Date.now() / 1000) as UTCTimestamp, open: 10, high: 10.63, low: 9.49, close: 9.55, volume: 1000 },
+  { time: (Math.floor((Date.now()+1000) / 1000)) as UTCTimestamp, open: 9.55, high: 15, low: 9.55, close: 12, volume: 1000 },
+  { time: (Math.floor((Date.now()+2000) / 1000)) as UTCTimestamp, open: 12, high: 9.55, low: 8, close: 11, volume: 1000 },
 ]
 
 export function Candles(props: any) {
