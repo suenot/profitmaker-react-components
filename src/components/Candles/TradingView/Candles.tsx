@@ -1,14 +1,24 @@
 import { createChart, ColorType } from 'lightweight-charts';
 import React, { useEffect, useRef } from 'react';
 
+interface Candlestick {
+  time: { year: number, month: number, day: number },
+  open: number,
+  high: number,
+  low: number,
+  close: number,
+  volume: number
+}
+
 interface ChartProps {
-  data: { time: string, value: number }[],
+  data: Candlestick[],
   colors?: {
-  backgroundColor?: string,
-  lineColor?: string,
-  textColor?: string,
-  areaTopColor?: string,
-  areaBottomColor?: string,
+    upColor?: string,
+    downColor?: string,
+    borderDownColor?: string,
+    borderUpColor?: string,
+    wickDownColor?: string,
+    wickUpColor?: string,
   }
 }
 
@@ -16,11 +26,12 @@ export const ChartComponent: React.FC<ChartProps> = props => {
   const {
     data,
     colors: {
-      backgroundColor = 'white',
-      lineColor = '#2962FF',
-      textColor = 'black',
-      areaTopColor = '#2962FF',
-      areaBottomColor = 'rgba(41, 98, 255, 0.28)',
+      upColor = '#4bffb5',
+      downColor = '#ff4976',
+      borderDownColor = '#ff4976',
+      borderUpColor = '#4bffb5',
+      wickDownColor = '#838ca1',
+      wickUpColor = '#838ca1',
     } = {},
   } = props;
 
@@ -35,17 +46,20 @@ export const ChartComponent: React.FC<ChartProps> = props => {
       };
 
       const chart = createChart(chartContainerRef.current, {
-        layout: {
-          background: { type: ColorType.Solid, color: backgroundColor },
-          textColor,
-        },
         width: chartContainerRef.current.clientWidth,
-        height: 300,
+        height: 500,
       });
       chart.timeScale().fitContent();
 
-      const newSeries = chart.addAreaSeries({ lineColor, topColor: areaTopColor, bottomColor: areaBottomColor });
-      newSeries.setData(data);
+      const candleSeries = chart.addCandlestickSeries({
+        upColor,
+        downColor,
+        borderDownColor,
+        borderUpColor,
+        wickDownColor,
+        wickUpColor,
+      });
+      candleSeries.setData(data);
 
       window.addEventListener('resize', handleResize);
 
@@ -55,7 +69,7 @@ export const ChartComponent: React.FC<ChartProps> = props => {
         chart.remove();
       };
     },
-    [data, backgroundColor, lineColor, textColor, areaTopColor, areaBottomColor]
+    [data, upColor, downColor, borderDownColor, borderUpColor, wickDownColor, wickUpColor]
   );
 
   return (
@@ -65,18 +79,9 @@ export const ChartComponent: React.FC<ChartProps> = props => {
   );
 };
 
-const initialData = [
-  { time: '2018-12-22', value: 32.51 },
-  { time: '2018-12-23', value: 31.11 },
-  { time: '2018-12-24', value: 27.02 },
-  { time: '2018-12-25', value: 27.32 },
-  { time: '2018-12-26', value: 25.17 },
-  { time: '2018-12-27', value: 28.89 },
-  { time: '2018-12-28', value: 25.46 },
-  { time: '2018-12-29', value: 23.92 },
-  { time: '2018-12-30', value: 22.68 },
-  { time: '2018-12-31', value: 22.67 },
-];
+const initialData: Candlestick[] = [
+  { time: { year: 2022, month: 1, day: 18 }, open: 10, high: 10.63, low: 9.49, close: 9.55, volume: 1000 }
+]
 
 export function Candles(props: any) {
   return (
