@@ -21,6 +21,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import useSize from '@react-hook/size';
 
 // import { useTranslation } from 'react-i18next'
 
@@ -70,7 +71,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/candles",
-    element: <Candles />,
+    element: <div style={{minHeight: '100%'}}>
+      <Candles />
+    </div>,
   },
 ]);
 
