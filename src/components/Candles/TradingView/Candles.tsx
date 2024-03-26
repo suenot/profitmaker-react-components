@@ -11,6 +11,7 @@ interface Candlestick {
 }
 
 interface ChartProps {
+  height?: number,
   data: Candlestick[],
   colors?: {
     upColor?: string,
@@ -24,6 +25,7 @@ interface ChartProps {
 
 export const ChartComponent: React.FC<ChartProps> = props => {
   const {
+    height = 500,
     data,
     colors: {
       upColor = '#4bffb5',
@@ -52,7 +54,7 @@ export const ChartComponent: React.FC<ChartProps> = props => {
       // chart.timeScale().fitContent();
       const chart = createChart(chartContainerRef.current, {
         width: chartContainerRef.current.clientWidth,
-        height: 500,
+        height,
         timeScale: {
           tickMarkFormatter: (time: number) => {
             const date = new Date(time * 1000);
@@ -98,7 +100,7 @@ const initialData: Candlestick[] = [
   { time: (Math.floor((Date.now()+2000) / 1000)) as UTCTimestamp, open: 12, high: 9.55, low: 8, close: 11, volume: 1000 },
 ]
 
-export function Candles(props: any) {
+export function TradingViewCandles(props: any) {
   return (
     <ChartComponent {...props} data={initialData}></ChartComponent>
   );

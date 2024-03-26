@@ -15,7 +15,7 @@ import { LanguageList } from "./components/LanguageList"
 import { Echarts } from "./components/Echarts"
 import { Switch } from "./SwitchMode"
 import Dashboard from "./components/Dashboard"
-import { Candles } from "./components/Candles/TradingView/Candles"
+import { Candles } from "./components/Candles/Candles"
 import theme from "./theme"
 import {
   createBrowserRouter,
