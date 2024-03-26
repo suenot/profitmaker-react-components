@@ -2,6 +2,20 @@ import React from 'react';
 import GridLayout from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
+import { Tabs, TabList, Tab } from '@chakra-ui/react';
+import {
+  Editable,
+  EditableInput,
+  EditableTextarea,
+  EditablePreview,
+  useEditableControls,
+  Input,
+  ButtonGroup,
+  Flex,
+  IconButton,
+} from '@chakra-ui/react';
+// import   CheckIcon, CloseIcon, EditIcon
+import { CheckIcon, CloseIcon, EditIcon } from '@chakra-ui/icons';
 
 const ExampleGrid = () => {
   // Define the layout configuration for each grid item
@@ -11,12 +25,74 @@ const ExampleGrid = () => {
     { i: 'item3', x: 6, y: 0, w: 2, h: 3 }
   ];
 
+  // ...
+
+  function EditableControls() {
+    const {
+      isEditing,
+      getSubmitButtonProps,
+      getCancelButtonProps,
+      getEditButtonProps,
+    } = useEditableControls()
+
+    const submitButtonProps = getSubmitButtonProps();
+    const cancelButtonProps = getCancelButtonProps();
+    const editButtonProps = getEditButtonProps();
+
+    return isEditing ? (
+      <>
+      </>
+    ) : (
+      <Flex justifyContent='center'>
+        <IconButton size='sm' icon={<EditIcon />} aria-label={editButtonProps['aria-label'] || 'Edit'} {...editButtonProps} />
+      </Flex>
+    )
+  }
+
+  const dashboards = [
+    {
+      id: 0,
+      name: 'BTC/USD',
+    },
+    {
+      id: 1,
+      name: 'LTC/BTC',
+    },
+    {
+      id: 2,
+      name: 'NANO/BTC',
+    },
+  ]
   return (
-    <GridLayout className="example-layout" layout={layoutConfig} cols={12} rowHeight={30} width={1200}>
-      <div key="item1" style={{ background: '#ff4d4f' }}>Item 1</div>
-      <div key="item2" style={{ background: '#40a9ff' }}>Item 2</div>
-      <div key="item3" style={{ background: '#73d13d' }}>Item 3</div>
-    </GridLayout>
+    <>
+      <Tabs>
+        <TabList>
+          { dashboards.map(dashboard => (
+            <Tab key={dashboard.id}>{dashboard.name}</Tab>
+          ))}
+          {/* <Tab>
+            <Editable
+              textAlign='center'
+              defaultValue='BTC/USD'
+              isPreviewFocusable={false}
+              display={'flex'}
+              flexDirection={'row'}
+            >
+              <EditablePreview />
+              <Input as={EditableInput} />
+              <EditableControls />
+            </Editable>
+          </Tab>
+          <Tab>LTC/BTC</Tab>
+          <Tab>NANO/BTC</Tab> */}
+        </TabList>
+      </Tabs>
+      <GridLayout className="example-layout" layout={layoutConfig} cols={12} rowHeight={30} width={1200}>
+        <div key="item1" style={{ background: '#ff4d4f' }}>Item 1</div>
+        <div key="item2" style={{ background: '#40a9ff' }}>Item 2</div>
+        <div key="item3" style={{ background: '#73d13d' }}>Item 3</div>
+      </GridLayout>
+    </>
   );
 };
 
