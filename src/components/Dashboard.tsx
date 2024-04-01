@@ -1,8 +1,8 @@
-import React from 'react';
-import GridLayout from 'react-grid-layout';
+import React, { useState } from 'react';
+import GridLayout from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import { Tabs, TabList, Tab } from '@chakra-ui/react';
+import { Tabs, TabList, Tab, ListItem } from '@chakra-ui/react';
 import {
   Editable,
   EditableInput,
@@ -14,10 +14,23 @@ import {
   Flex,
   IconButton,
 } from '@chakra-ui/react';
+import { Popover, PopoverTrigger, PopoverContent, Box, Button } from '@chakra-ui/react';
 // import   CheckIcon, CloseIcon, EditIcon
 import { CheckIcon, CloseIcon, EditIcon } from '@chakra-ui/icons';
 
 const ExampleGrid = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleRightClick = (event: any) => {
+    event.preventDefault(); // prevent the browser's context menu from showing up
+    setPosition({ x: event.clientX, y: event.clientY });
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   // Define the layout configuration for each grid item
   const layoutConfig = [
     { i: 'item1', x: 0, y: 0, w: 2, h: 3 },
@@ -64,7 +77,15 @@ const ExampleGrid = () => {
     },
   ]
   return (
-    <>
+    <Box onContextMenu={handleRightClick}>
+      <Popover isOpen={isOpen} onClose={handleClose}>
+        <PopoverTrigger>
+          <Box position="fixed" left={position.x} top={position.y} />
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>navigation</div>
+        </PopoverContent>
+      </Popover>
       <Tabs>
         <TabList>
           { dashboards.map(dashboard => (
@@ -92,7 +113,7 @@ const ExampleGrid = () => {
         <div key="item2" style={{ background: '#40a9ff' }}>Item 2</div>
         <div key="item3" style={{ background: '#73d13d' }}>Item 3</div>
       </GridLayout>
-    </>
+    </Box>
   );
 };
 
