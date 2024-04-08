@@ -8,12 +8,10 @@ export const Widget = ({ title = "Binance ETH/BTC", content = "some content" }: 
   const bg = useColorModeValue("#fff", "#181818");
   return (
     <Box
-      maxW="lg"
-      minW="sm"
-      w="lg"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
+      height="100%"
       p={0}
       sx={{ position: "relative" }}
       bg={bg}

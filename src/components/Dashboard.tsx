@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GridLayout from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
@@ -17,10 +17,25 @@ import {
 import { Popover, PopoverTrigger, PopoverContent, Box, Button } from '@chakra-ui/react';
 // import   CheckIcon, CloseIcon, EditIcon
 import { CheckIcon, CloseIcon, EditIcon } from '@chakra-ui/icons';
+import { Widget } from './Widget/Widget';
 
 const ExampleGrid = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleRightClick = (event: any) => {
     event.preventDefault(); // prevent the browser's context menu from showing up
@@ -33,9 +48,9 @@ const ExampleGrid = () => {
   };
   // Define the layout configuration for each grid item
   const layoutConfig = [
-    { i: 'item1', x: 0, y: 0, w: 2, h: 3 },
-    { i: 'item2', x: 2, y: 0, w: 4, h: 3 },
-    { i: 'item3', x: 6, y: 0, w: 2, h: 3 }
+    { i: 'item1', x: 0, y: 0, w: 2, h: 3, component: Widget, background: '#ff4d4f' },
+    { i: 'item2', x: 2, y: 0, w: 4, h: 3, component: Widget, background: '#40a9ff'},
+    { i: 'item3', x: 6, y: 0, w: 2, h: 3, component: Widget, background: '#73d13d'}
   ];
 
   // ...
@@ -108,10 +123,17 @@ const ExampleGrid = () => {
           <Tab>NANO/BTC</Tab> */}
         </TabList>
       </Tabs>
-      <GridLayout className="example-layout" layout={layoutConfig} cols={12} rowHeight={30} width={1200}>
+      {/* <GridLayout className="example-layout" layout={layoutConfig} cols={12} rowHeight={30} width={windowWidth}>
         <div key="item1" style={{ background: '#ff4d4f' }}>Item 1</div>
         <div key="item2" style={{ background: '#40a9ff' }}>Item 2</div>
         <div key="item3" style={{ background: '#73d13d' }}>Item 3</div>
+      </GridLayout> */}
+      <GridLayout className="example-layout" layout={layoutConfig} cols={12} rowHeight={30} width={1200}>
+        {layoutConfig.map(item => (
+          <div key={item.i} style={{ background: item.background }}>
+            {item.component ? <item.component /> : `Item ${item.i}`}
+          </div>
+        ))}
       </GridLayout>
     </Box>
   );
