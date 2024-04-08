@@ -10,6 +10,7 @@ import { Echarts } from "./Echarts"
 import { Switch } from "../SwitchMode"
 import Dashboard from "./Dashboard"
 import { Candles } from "./Candles/TradingView/Candles"
+import { Widget } from "./Widget/Widget"
 
 import {
   ChakraProvider,
@@ -42,5 +43,8 @@ export const ComponentsList = () => {
     <Dashboard />
     <br />
     <Switch />
+    <br />
+    <Widget />
+
   </Container>
 }
