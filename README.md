@@ -1,3 +1,33 @@
+# Components
+- [?] transaction
+- [ ] transaction-list
+
+- [?] unit (asset)
+- [+] unit-list
+
+- [ ] wallet
+- [+] wallets-list
+
+- [ ] portfolio
+- [+] portfolios-list
+
+- [ ] language
+- [+] languages-list
+
+===
+
+- [?] dashboards
+
+- [?] candles
+
+- [ ] clusters
+
+- [ ] orderbook
+
+- [ ] ticks
+
+
+
 This project was bootstrapped with
 [Create React App](https://github.com/facebook/create-react-app).
 
