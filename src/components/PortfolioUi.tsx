@@ -58,7 +58,7 @@ export const PortfolioUi = () => {
 
   const item = {
     id: 1,
-    name: 'Binance',
+    name: 'Кадетский фонд',
     avatar: undefined,
   }
 
