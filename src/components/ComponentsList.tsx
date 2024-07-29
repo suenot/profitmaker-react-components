@@ -13,6 +13,7 @@ import Dashboard from "./Dashboard"
 import { Candles } from "./Candles/TradingView/Candles"
 import { Widget } from "./Widget/Widget"
 import { PortfolioUi } from "./PortfolioUi"
+import { Orderbook } from "./Orderbook/Orderbook"
 
 import {
   ChakraProvider,
@@ -23,6 +24,9 @@ import {
 
 export const ComponentsList = () => {
   return <Container>
+    <Text fontSize='2xl'>Orderbook</Text>
+    <Orderbook />
+    <br />
     <Text fontSize='2xl'>Payment (Transaction, Transfer)</Text>
     <br />
     <PaymentUi />
